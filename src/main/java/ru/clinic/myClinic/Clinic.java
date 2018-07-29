@@ -11,10 +11,10 @@ public class Clinic {
         return clients;
     }
 
-    public void addClient(int id, String name, Pet pet) throws UserUncorrectedExeption {
+    public void addClient(int id, String name, Pet pet) throws UserUncorrectedException {
         for(int i = 0; i < clients.length; i++){
             if(clients[i]!=null&&clients[i].getId()==id) {
-                throw new UserUncorrectedExeption("Клиент с таким id уже существует");
+                throw new UserUncorrectedException("Клиент с таким id уже существует");
             } else
             if(clients[i] == null) {
                 Client client = new Client(id, name, pet);

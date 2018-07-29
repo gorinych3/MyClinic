@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class StartingPrograms {
-    public static void main(String[] args) throws UserUncorrectedExeption, IOException {
+    public static void main(String[] args) throws UserUncorrectedException, IOException {
 
         UserInput ui = new UserInput();
         ui.startingInput();

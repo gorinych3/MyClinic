@@ -15,7 +15,7 @@ public class UserInput {
 
 
 
-    public void startingInput() throws IOException, UserUncorrectedExeption {
+    public void startingInput() throws IOException, UserUncorrectedException {
         cl.addClient(1, "Ivanov", new Dog("Barbos"));
         cl.addClient(2, "Petrov", new Cat("Vaska"));
         while (exit) {
@@ -34,11 +34,21 @@ public class UserInput {
 
     }
 
-    public void switchOperation(String oper) throws IOException, UserUncorrectedExeption {
+    public void switchOperation(String oper) throws IOException  {
         switch (oper){
             case "exit" : closeProgram();break;
             case "a" :  System.out.println("input id");
-                        id = Integer.parseInt(reader.readLine());
+                        try {
+                            id = Integer.parseInt(reader.readLine());
+                        }catch (NumberFormatException e){
+                            try {
+                                throw new UserUncorrectedException("You mast input integer number");
+                            } catch (UserUncorrectedException e1) {
+                                e1.printStackTrace();
+                                switchOperation("a");
+                            }
+
+                        }
                         System.out.println("input client name");
                         name = reader.readLine();
                         System.out.println("input pet type");
@@ -46,10 +56,18 @@ public class UserInput {
                         System.out.println("input pet name");
                         petName = reader.readLine();
                         if(pet.equals("Dog")||pet.equals("dog")){
-                            cl.addClient(id,name,new Dog(petName));
+                            try {
+                                cl.addClient(id,name,new Dog(petName));
+                            } catch (UserUncorrectedException e) {
+                                e.printStackTrace();
+                            }
                         }
                         if(pet.equals("Cat")||pet.equals("cat")){
-                            cl.addClient(id,name,new Cat(petName));
+                            try {
+                                cl.addClient(id,name,new Cat(petName));
+                            } catch (UserUncorrectedException e) {
+                                e.printStackTrace();
+                            }
                         }
                         cl.showList();
                         break;
