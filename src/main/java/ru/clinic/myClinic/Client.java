@@ -1,5 +1,7 @@
 package ru.clinic.myClinic;
 
+import java.util.Objects;
+
 public class Client {
     private String name;
     private Pet pet;
@@ -42,5 +44,21 @@ public class Client {
                 ", pet=" + pet +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return id == client.id &&
+                Objects.equals(name, client.name) &&
+                Objects.equals(pet, client.pet);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, pet, id);
     }
 }

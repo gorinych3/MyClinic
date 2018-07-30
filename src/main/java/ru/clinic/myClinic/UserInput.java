@@ -3,10 +3,11 @@ package ru.clinic.myClinic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class UserInput {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private Clinic cl = new Clinic(100);
+    private Clinic cl = new Clinic();
     private int id;
     private String name;
     private String pet;
@@ -83,7 +84,7 @@ public class UserInput {
                         System.out.println("input new client name");
                         name = reader.readLine();
                         cl.updateClient(id,name);
-                        cl.showList();break;
+                        break;
             case "ucp" : System.out.println("input id");
                         id = Integer.parseInt(reader.readLine());
                         System.out.println("input client name");
@@ -91,7 +92,7 @@ public class UserInput {
                         System.out.println("input pet name");
                         petName = reader.readLine();
                         cl.updateClient(id,name,petName);
-                        cl.showList();break;
+                        break;
         }
     }
 
